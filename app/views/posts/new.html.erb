@@ -1,1 +1,10 @@
 <h3>Создание нового поста</h3>
+<%= form_for :post, url: posts_path do |f| %>
+  <section class='new-post_field'> 
+    <h4>Название</h4>
+    <%= f.text_field :title %>
+    <h4>Текст статьи</h4>
+    <%= f.text_area :body %>
+    <%= f.submit %>
+  </section>
+<% end %>

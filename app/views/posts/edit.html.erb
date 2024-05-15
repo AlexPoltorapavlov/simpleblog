@@ -1,0 +1,23 @@
+<h3>Редактирование поста</h3>
+<%= form_with model: @post, url: post_path(@post), method: :patch do |f| %>
+<% if flash.now[:error] %>
+  <div class="alert alert-danger">
+    <%= flash.now[:error] %>
+  </div>
+<% end %>
+
+
+  <section class="new-post_field">
+    <div>
+      <h4>Название</h4>
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
+    <div>
+      <h4>Текст статьи</h4>
+      <%= f.text_area :body, class: "form-control" %>
+    </div>
+    <div>
+      <%= f.submit "Сохранить пост", class: "btn btn-success" %>
+    </div>
+  </section>
+<% end %>

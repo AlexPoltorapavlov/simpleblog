@@ -5,3 +5,21 @@
 <hr>
 <%= link_to 'Редактировать', edit_post_path(@post), :class => 'btn btn-warning'%>
 <%= link_to 'Удалить пост', post_path(@post), data: { "turbo-method": :delete }, class: 'btn btn-danger', onclick: "return confirm('Вы уверены?')" %>
+
+<hr>
+<h3>Комментарии</h3>
+<%= form_for([@post, @post.comments.build]) do |f| %>
+  <section class="new-post_field">
+    <div>
+      <h4>Пользователь</h4>
+      <%= f.text_field :username, class: "form-control" %>
+    </div>
+    <div>
+      <h4>Текст комментария</h4>
+      <%= f.text_area :body, class: "form-control" %>
+    </div>
+    <div>
+      <%= f.submit "Добавить комментарий", class: "btn btn-warning" %>
+    </div>
+  </section>
+<% end %>

@@ -7,7 +7,7 @@
 <%= link_to 'Удалить пост', post_path(@post), data: { "turbo-method": :delete }, class: 'btn btn-danger', onclick: "return confirm('Вы уверены?')" %>
 
 <hr>
-<h3>Комментарии</h3>
+<h3>Добавить комментарий</h3>
 <%= form_for([@post, @post.comments.build]) do |f| %>
   <section class="new-post_field">
     <div>
@@ -22,4 +22,13 @@
       <%= f.submit "Добавить комментарий", class: "btn btn-warning" %>
     </div>
   </section>
+<% end %>
+<hr>
+<h3> Все комментарии </h3>
+<% @post.comments.each do |comment| %>
+	<article class='card'>
+		<p class = 'card-body'>
+			<strong><%= comment.username %></strong>: <%= comment.body %>
+		</p>
+	</article>
 <% end %>

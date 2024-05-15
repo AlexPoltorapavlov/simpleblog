@@ -1,16 +1,23 @@
 <h3>Создание нового поста</h3>
-<%= form_for :post, url: posts_path do |f| %>
-  <section class='new-post_field'> 
-		<div>
-			<h4>Название</h4>
-			<%= f.text_field(:title, {:class => 'form_control', style: 'width: 100%'}) %>
-		</div>
-		<div>
-			<h4>Текст статьи</h4>
-			<%= f.text_area(:body, {:class => 'form_control', style: 'width: 100%'}) %>
-		</div>
-		<div>
-    	<%= f.submit({:class => 'btn btn-succes'}) %>
-		</div>
+<%= form_with model: @post, url: posts_path, local: true do |f| %>
+<% if flash.now[:error] %>
+  <div class="alert alert-danger">
+    <%= flash.now[:error] %>
+  </div>
+<% end %>
+
+
+  <section class="new-post_field">
+    <div>
+      <h4>Название</h4>
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
+    <div>
+      <h4>Текст статьи</h4>
+      <%= f.text_area :body, class: "form-control" %>
+    </div>
+    <div>
+      <%= f.submit "Сохранить пост", class: "btn btn-success" %>
+    </div>
   </section>
 <% end %>

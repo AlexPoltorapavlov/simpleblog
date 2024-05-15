@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   end
 
   def new
-
+    @post = Post.new
   end
 
   def show
@@ -12,11 +12,13 @@ class PostsController < ApplicationController
   end
 
   def create
-    # render plain: params[:post].inspect
     @post = Post.new(post_params)
-
-    @post.save
-    redirect_to @post
+    if @post.save
+      redirect_to @post
+    else
+      flash.now[:error] = @post.errors.full_messages.to_sentence
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private def post_params
